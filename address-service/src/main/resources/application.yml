@@ -1,0 +1,89 @@
+server:
+  port: 6001
+
+eureka:
+  client:
+    register-with-eureka: true  # Service A will register itself with Eureka
+    fetch-registry: true  # Service A will fetch the registry of other services from Eureka
+    service-url:
+      defaultZone: http://localhost:5000/eureka/
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: Address App
+    description: Address microservice application
+    version: 1.0.0
+
+spring:
+  application:
+    name: address-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/capstone_microservices  # Default: "jdbc:mysql://localhost:3306/mydb"
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  # Default Hibernate strategy
+    show-sql: true
+
+#server:
+#  port: 6000
+#
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:5000/eureka/
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  info:
+#    env:
+#      enabled: true
+#
+#info:
+#  app:
+#    name: Address App
+#    description: Address microservice application
+#    version: 1.0.0
+#
+#spring:
+#  application:
+#    name: address-service
+#
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/capstone_microservices  # Default: "jdbc:mysql://localhost:3306/mydb"
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  # Default Hibernate strategy
+#    show-sql: true
