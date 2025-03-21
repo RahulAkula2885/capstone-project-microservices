@@ -1,0 +1,17 @@
+server:
+  port: 5000  # The port on which the Eureka server will run. It is set to 5000 here, instead of the default 8761.
+
+eureka:
+  client:
+    fetch-registry: false # Set to false because this is the Eureka server, not a client, so we don't need to fetch other service registries.
+    register-with-eureka: false # Set to false because this service is the Eureka server itself and doesn't need to register with itself.
+
+    service-url:
+      defaultZone: http://localhost:5000/eureka/ # The URL where the Eureka server will be accessed by the client services. It specifies the service registry URL.
+
+  instance:
+    hostname: localhost # The hostname for the Eureka server. This defines the name of the host on which the Eureka server runs.
+
+spring:
+  application:
+    name: discovery-service # The name of the Spring Boot application. This will be used to identify the service in logs and other related configurations.
