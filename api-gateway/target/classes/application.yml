@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  # Enables service discovery using Eureka
+#          lower-case-service-id: true
+
+server:
+  port: 8765  # Port where the API Gateway will run
+
+eureka:
+  client:
+    fetch-registry: true  # Allows the gateway to fetch the registry of services from Eureka
+    register-with-eureka: true  # Registers the API Gateway with Eureka
+
+    service-url:
+      defaultZone: http://localhost:5000/eureka/  # URL of the Eureka server for service registry
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # Expose all management endpoints like health, info, metrics, etc.
+  info:
+    env:
+      enabled: true  # Enable environmental information (e.g., Java version, OS)
+
+info:
+  app:
+    name: API Gateway App
+    description: API Gateway microservice application
+    version: 1.0.0
